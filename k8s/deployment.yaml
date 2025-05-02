@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: my-app-container
-        image: subhash45/outage-communication-app:v13
+        image: subhash45/outage-communication-app:v14
         ports:
         - containerPort: 5000
 
