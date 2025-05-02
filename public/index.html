@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outage communication</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>📩 outage communication</h2>
+
+    <!-- Status Section -->
+    <div class="status-container">
+        <label for="status">🔵 Status:</label>
+        <select id="status" onchange="updateCurrentStatus()" required>
+            <option value="" selected disabled>🔵 Select Status</option>
+            <option value="GREEN">🟢 Green (Resolved)</option>
+            <option value="AMBER">🟠 Amber (Under Observation)</option>
+            <option value="RED">🔴 Red (Investigating)</option>
+        </select>
+    </div>
+    <div id="current-status" class="status-box green-status">🟢 Resolved</div>
+
+    <!-- Region & Reporter -->
+    <div class="form-group">
+        <label>Region:</label>
+        <input type="text" id="region" value="India" readonly />
+    </div>
+
+    <div class="form-group">
+        <label>Reporter:</label>
+        <input type="text" id="reporter" value="OCC Team" readonly />
+    </div>
+
+    <!-- Form -->
+    <div class="form-group">
+        <label for="recipient">📧 Recipient Email:</label>
+        <input type="email" id="recipient" list="email-suggestions" placeholder="Enter recipient email">
+        <datalist id="email-suggestions">
+            <option value="subhash@gmail.com">
+        </datalist>
+    </div>
+    
+    <div class="form-group">
+        <label for="subject">✉️ Email Subject:</label>
+        <input type="text" id="subject" placeholder="Enter subject">
+    </div>
+
+    <div class="form-group">
+        <label for="incident-title">🚨 Incident Title:</label>
+        <input type="text" id="incident-title" placeholder="Enter incident title">
+    </div>
+
+    <div class="form-group">
+        <label for="description">📝 Description:</label>
+        <textarea id="description" rows="3" placeholder="Enter description"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="impact">⚠️ Impact:</label>
+        <input type="text" id="impact" placeholder="Enter impact">
+    </div>
+
+    <div class="form-group">
+        <label for="outage-start">🕒 Outage Start:</label>
+        <input type="datetime-local" id="outage-start">
+    </div>
+
+    <div class="form-group" id="outage-end-group">
+        <label for="outage-end">🕒 Outage End: <span class="required-asterisk">*</span></label>
+        <input type="datetime-local" id="outage-end" placeholder="Enter outage end time">
+    </div>
+
+    <div class="form-group">
+        <label for="slack-channel">💬 Slack Channel</label>
+        <input type="text" id="slack-channel" value="ola-outage" readonly />
+    </div>
+    
+    <!-- Incident ID Field (Hidden by Default) -->
+    <div class="form-group" id="incident-id-group" style="display: none;">
+        <label for="incident-id">🆔 Incident ID:</label>
+        <input type="text" id="incident-id" placeholder="Enter Incident ID">
+    </div>
+
+    <div class="form-group">
+        <label for="zoom-link">📺 Zoom Link: (No need to fill) </label>
+        <input type="text" id="zoom-link" placeholder="Enter Zoom link">
+    </div>
+
+    <div class="form-group">
+        <label for="major-incident-managers">👥 Major Incident Managers:</label>
+        <input type="text" id="major-incident-managers" placeholder="Enter managers">
+    </div>
+
+    <div class="form-group">
+        <label for="teams-engaged">🛠️ Teams Engaged:</label>
+        <select id="teams-engaged" multiple>
+            <option value="OCC">OCC</option>
+            <option value="DEV">DEV</option>
+            <option value="DevOps">DevOps</option>
+            <option value="Infra">Infra</option>
+            <option value="Data PE">Data PE</option>
+            <option value="DBA">DBA</option>
+            <option value="OLA Money">OLA Money</option>
+            <option value="Device Platform">Device Platform</option>
+            <option value="SOC">SOC</option>
+            <option value="Dataplatform BI">Dataplatform BI</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="chain-of-events">🔗 Chain of Events:</label>
+        <textarea id="chain-of-events" rows="2" placeholder="Enter chain of events"></textarea>
+    </div>
+
+    <button onclick="sendEmail()">📨 Send Email</button>
+</div>
+
+</body>
+</html>
